@@ -5,6 +5,7 @@ plugins {
 }
 
 lateinit var sourcesArtifact: PublishArtifact
+lateinit var jarArtifact: PublishArtifact
 tasks {
     val sources by creating(Jar::class) {
         archiveClassifier.set("sources")
@@ -14,11 +15,18 @@ tasks {
     artifacts {
         sourcesArtifact = add("archives", sources)
     }
+    val jar by creating(Jar::class) {
+        from(project.the<SourceSetContainer>()["main"].allJava)
+    }
+
+    artifacts {
+        sourcesArtifact = add("archives", jar)
+    }
 }
 
 indra {
     configurePublications {
-        from(components["java"])
+        this.setArtifacts(listOf(sourcesArtifact))
         artifact(sourcesArtifact)
     }
     javaVersions {
