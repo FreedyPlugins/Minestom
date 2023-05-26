@@ -12,15 +12,8 @@ indra {
         target(17)
         testWith(17)
     }
-    runCatching {
-        val split = System.getenv()["GITHUB_REPOSITORY"]?.split("/") ?: throw AssertionError()
-        val username = split[0]
-        val password = split[1]
-        println("$username/$password")
-        github(username, password) {
-            ci(true)
-            publishing()
-        }
+    github("Minestom", "Minestom") {
+        ci(true)
     }
     apache2License()
 
