@@ -3,36 +3,19 @@ plugins {
     `maven-publish`
 }
 
-lateinit var sourcesArtifact: PublishArtifact
-lateinit var jarArtifact: PublishArtifact
-tasks {
-    artifacts {
-        sourcesArtifact = add("archives", create("sourceArchives", Jar::class) {
-            archiveClassifier.set("sources")
-            from(rootProject.the<SourceSetContainer>()["main"].allSource)
-        })
-    }
-    artifacts {
-        jarArtifact = add("archives", create("classArchives", Jar::class) {
-            from(rootProject.components["java"])
-        })
-    }
-}
-
-
 publishing {
     publications {
         create<MavenPublication>("maven") {
             groupId = "com.github.Minestom"
             artifactId = "minestom"
             version = System.getenv()["GITHUB_BUILD_NUMBER"]
-            setArtifacts(listOf(sourcesArtifact, jarArtifact))
+            from(rootProject.components["java"])
         }
     }
     repositories {
         maven {
             name = "Packages"
-            url = uri("https://maven.pkg.github.com/%s".format(System.getenv()["GITHUB_REPOSITORY"]))
+            url = uri("/Users/ijong-won/IdeaProjects/Minestom/published")
             credentials {
                 this.username = System.getenv()["GITHUB_REPOSITORY"]?.split("/")?.get(0)
                 this.password = System.getenv()["GITHUB_TOKEN"]
