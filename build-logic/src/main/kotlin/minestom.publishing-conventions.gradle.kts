@@ -6,9 +6,7 @@ plugins {
 
 indra {
     runCatching {
-        val SONATYPE_USERNAME: String by System.getenv()
-        val SONATYPE_PASSWORD: String by System.getenv()
-        publishReleasesTo(SONATYPE_USERNAME, SONATYPE_PASSWORD)
+        publishReleasesTo("pkg", "https://s01.oss.sonatype.org/content/repositories/releases/")
     }
     javaVersions {
         target(17)
