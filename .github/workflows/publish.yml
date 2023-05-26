@@ -32,8 +32,8 @@ jobs:
       - name: Execute Gradle build
         run: ./gradlew publish
       - run: |
-          git stash 
-          git stash drop
+          git stash || true
+          git stash drop || true
           git switch publish
           echo "com.github.Minestom:minestom:${{github.run_number}}
           https://$_ACTOR:$_TOKEN@maven.pkg.github.com/FreedyPlugins/Minestom" > libraries/release
