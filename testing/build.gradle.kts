@@ -8,14 +8,14 @@ lateinit var jarArtifact: PublishArtifact
 tasks {
     val sources by creating(Jar::class) {
         archiveClassifier.set("sources")
-        from(project.the<SourceSetContainer>()["main"].allSource)
+        from(rootProject.the<SourceSetContainer>()["main"].allSource)
     }
 
     artifacts {
         sourcesArtifact = add("archives", sources)
     }
     val jarClasses by creating(Jar::class) {
-        from(project.the<SourceSetContainer>()["main"].allJava)
+        from(rootProject.the<SourceSetContainer>()["main"].allJava)
     }
 
     artifacts {
