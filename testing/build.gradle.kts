@@ -30,6 +30,16 @@ publishing {
             setArtifacts(listOf(sourcesArtifact, jarArtifact))
         }
     }
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/%s".format(System.getenv()["GITHUB_REPOSITORY"]))
+            credentials {
+                this.username = username
+                this.password = password
+            }
+        }
+    }
 }
 
 group = "net.minestom.testing"
