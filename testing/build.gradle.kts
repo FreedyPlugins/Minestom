@@ -7,14 +7,14 @@ lateinit var sourcesArtifact: PublishArtifact
 lateinit var jarArtifact: PublishArtifact
 tasks {
     artifacts {
-        sourcesArtifact = add("archives", create("source-archives", Jar::class) {
+        sourcesArtifact = add("archives", create("sourceArchives", Jar::class) {
             archiveClassifier.set("sources")
             from(rootProject.the<SourceSetContainer>()["main"].allSource)
         })
     }
     artifacts {
-        jarArtifact = add("archives", create("class-archives", Jar::class) {
-            from(rootProject.the<SourceSetContainer>()["main"].compiledBy("jar"))
+        jarArtifact = add("archives", create("classArchives", Jar::class) {
+            from(rootProject.components["java"])
         })
     }
 }
