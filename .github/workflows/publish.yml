@@ -41,5 +41,5 @@ jobs:
           https://$_ACTOR:$_TOKEN@maven.pkg.github.com/FreedyPlugins/Minestom" > ./libraries/release
           git add .
           git config --global user.name ${{github.actor}}
-          git commit -m "Release ${{github.run_number}}" --amend --reset-author --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
+          git commit -m "Release ${{github.run_number}}" --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
           git push origin publish
