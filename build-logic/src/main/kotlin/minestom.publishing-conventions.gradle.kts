@@ -5,9 +5,8 @@ plugins {
 }
 
 indra {
-    runCatching {
-        publishAllTo("pkg", "https://s01.oss.sonatype.org/content/repositories/releases/")
-    }
+    publishAllTo("Bruce0203", "https://s01.oss.sonatype.org/content/repositories/releases/")
+
     javaVersions {
         target(17)
         testWith(17)
