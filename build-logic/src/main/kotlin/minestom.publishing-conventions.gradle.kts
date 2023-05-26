@@ -6,7 +6,7 @@ plugins {
 
 indra {
     runCatching {
-        publishReleasesTo("pkg", "https://s01.oss.sonatype.org/content/repositories/releases/")
+        publishAllTo("pkg", "https://s01.oss.sonatype.org/content/repositories/releases/")
     }
     javaVersions {
         target(17)
