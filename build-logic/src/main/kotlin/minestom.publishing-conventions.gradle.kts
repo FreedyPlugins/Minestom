@@ -4,29 +4,9 @@ plugins {
     id("net.kyori.indra.publishing")
 }
 
-lateinit var sourcesArtifact: PublishArtifact
-lateinit var jarArtifact: PublishArtifact
-tasks {
-    val sources by creating(Jar::class) {
-        archiveClassifier.set("sources")
-        from(project.the<SourceSetContainer>()["main"].allSource)
-    }
-
-    artifacts {
-        sourcesArtifact = add("archives", sources)
-    }
-    val jarClasses by creating(Jar::class) {
-        from(project.the<SourceSetContainer>()["main"].allJava)
-    }
-
-    artifacts {
-        sourcesArtifact = add("archives", jarClasses)
-    }
-}
 
 indra {
     configurePublications {
-        setArtifacts(listOf(sourcesArtifact, jarArtifact))
     }
     javaVersions {
         target(17)

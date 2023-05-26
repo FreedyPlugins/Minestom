@@ -3,14 +3,31 @@ plugins {
     `maven-publish`
 }
 
+lateinit var sourcesArtifact: PublishArtifact
+lateinit var jarArtifact: PublishArtifact
+tasks {
+    val sources by creating(Jar::class) {
+        archiveClassifier.set("sources")
+        from(project.the<SourceSetContainer>()["main"].allSource)
+    }
+
+    artifacts {
+        sourcesArtifact = add("archives", sources)
+    }
+    val jarClasses by creating(Jar::class) {
+        from(project.the<SourceSetContainer>()["main"].allJava)
+    }
+
+    artifacts {
+        jarArtifact = add("archives", jarClasses)
+    }
+}
+
+
 publishing {
     publications {
         create<MavenPublication>("maven") {
-            groupId = "net.minestom.testing"
-            artifactId = "testing"
-            version = "1.0"
-
-            from(components["java"])
+            setArtifacts(listOf(sourcesArtifact, jarArtifact))
         }
     }
 }
