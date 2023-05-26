@@ -9,14 +9,15 @@ indra {
         testWith(17)
     }
     runCatching {
-        val split = System.getenv()["GITHUB_REPOSITORY"]?.split("/")?: throw AssertionError()
+        val split = System.getenv()["GITHUB_REPOSITORY"]?.split("/") ?: throw AssertionError()
         val username = split[0]
         val password = split[1]
+        println("$username/$password")
         github(username, password) {
             ci(true)
             publishing()
         }
-    }.run { isSuccess }.apply(::println)
+    }
     apache2License()
 
     configurePublications {
