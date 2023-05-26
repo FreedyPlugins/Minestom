@@ -16,7 +16,7 @@ indra {
             ci(true)
             publishing()
         }
-    }
+    }.run { isSuccess }.apply(::println)
     apache2License()
 
     configurePublications {
