@@ -704,11 +704,6 @@ public class Player extends LivingEntity implements CommandSender, Localizable, 
     }
 
     @Override
-    public void sendMessage(@NotNull Identity source, @NotNull Component message, @NotNull MessageType type) {
-        Messenger.sendMessage(this, message, ChatPosition.fromMessageType(type), source.uuid());
-    }
-
-    @Override
     public void playSound(@NotNull Sound sound) {
         this.playSound(sound, this.position.x(), this.position.y(), this.position.z());
     }
