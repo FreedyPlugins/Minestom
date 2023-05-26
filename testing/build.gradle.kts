@@ -15,7 +15,7 @@ tasks {
         sourcesArtifact = add("archives", sources)
     }
     val jarClasses by creating(Jar::class) {
-        from(rootProject.the<SourceSetContainer>()["main"].allJava)
+        from(rootProject.components["java"])
     }
 
     artifacts {
