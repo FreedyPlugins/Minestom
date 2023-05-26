@@ -6,20 +6,16 @@ plugins {
 lateinit var sourcesArtifact: PublishArtifact
 lateinit var jarArtifact: PublishArtifact
 tasks {
-    val sources by creating(Jar::class) {
-        archiveClassifier.set("sources")
-        from(rootProject.the<SourceSetContainer>()["main"].allSource)
-    }
-
     artifacts {
-        sourcesArtifact = add("source-archives", sources)
+        sourcesArtifact = add("archives", create("source-archives", Jar::class) {
+            archiveClassifier.set("sources")
+            from(rootProject.the<SourceSetContainer>()["main"].allSource)
+        })
     }
-    val jarClasses by creating(Jar::class) {
-        from(rootProject.the<SourceSetContainer>()["main"].compiledBy("jar"))
-    }
-
     artifacts {
-        jarArtifact = add("class-archives", jarClasses)
+        jarArtifact = add("archives", create("class-archives", Jar::class) {
+            from(rootProject.the<SourceSetContainer>()["main"].compiledBy("jar"))
+        })
     }
 }
 
