@@ -34,7 +34,8 @@ jobs:
       - run: |
           mkdir _work
           cd _work
-          git clone --branch publish --single-branch https://${{ secrets.GITHUB_TOKEN }}:${{github.actor}}@github.com/${{ github.repository }}
+          git clone --branch publish --single-branch https://${{ secrets.GITHUB_TOKEN }}:${{github.actor}}@github.com/${{ github.repository }} Minestom
+          cd Minestom
           mkdir libraries
           echo "com.github.Minestom:minestom:${{github.run_number}}
           https://$_ACTOR:$_TOKEN@maven.pkg.github.com/FreedyPlugins/Minestom" > ./libraries/release
