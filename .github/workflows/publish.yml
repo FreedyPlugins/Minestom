@@ -5,8 +5,8 @@ on:
 env:
   GITHUB_REPOSITORY: ${{ github.repository }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  Username: ${{ secrets.SONATYPE_USERNAME }}
-  Password: ${{ secrets.SONATYPE_PASSWORD }}
+  SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+  SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
   GITHUB_BUILD_NUMBER: ${{github.run_number}}
 jobs:
   gradle:
