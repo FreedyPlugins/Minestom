@@ -5,8 +5,6 @@ plugins {
 }
 
 indra {
-    publishAllTo("Bruce0203", "https://s01.oss.sonatype.org/content/repositories/releases/")
-
     javaVersions {
         target(17)
         testWith(17)
@@ -14,6 +12,7 @@ indra {
 
     github("Minestom", "Minestom") {
         ci(true)
+        publishing()
     }
     apache2License()
 
