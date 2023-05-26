@@ -1,6 +1,4 @@
 
-import gradle.kotlin.dsl.accessors._6e76eda3e9f361c84676b4951885a653.indra
-
 plugins {
     id("net.kyori.indra")
     id("net.kyori.indra.publishing")
