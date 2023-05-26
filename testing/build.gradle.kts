@@ -28,7 +28,7 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             groupId = "com.github.Minestom"
-            artifactId = "Minestom"
+            artifactId = "minestom"
             version = "cb3892255e"
             setArtifacts(listOf(sourcesArtifact, jarArtifact))
         }
