@@ -31,9 +31,6 @@ jobs:
       - run: git tag ${{github.run_number}}
       - name: Execute Gradle build
         run: ./gradlew publish
-      - name: Sleep for 30 seconds
-        run: sleep 30m
-        shell: bash
       - run: |
           git remote set-url origin https://${{github.actor}}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git pull
