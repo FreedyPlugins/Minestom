@@ -5,7 +5,7 @@ plugins {
 }
 
 indraSonatype {
-    useAlternateSonatypeOSSHost("s01")
+    useAlternateSonatypeOSSHost("https://s01.oss.sonatype.org/content/repositories/releases/")
 }
 
 indra {
