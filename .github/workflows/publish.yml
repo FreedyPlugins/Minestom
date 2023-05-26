@@ -40,6 +40,7 @@ jobs:
           echo "com.github.Minestom:minestom:${{github.run_number}}
           https://\$_ACTOR:\$_TOKEN@maven.pkg.github.com/FreedyPlugins/Minestom" > ./libraries/release  
           git add .
-          git config --global user.name ${{github.actor}}
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git commit -m "Release ${{github.run_number}}"
           git push origin publish
