@@ -29,7 +29,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "com.github.Minestom"
             artifactId = "minestom"
-            version = "1.19.3"
+            version = System.getenv()["GITHUB_BUILD_NUMBER"]
             setArtifacts(listOf(sourcesArtifact, jarArtifact))
         }
     }
