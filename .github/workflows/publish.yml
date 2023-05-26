@@ -35,7 +35,7 @@ jobs:
           git stash 
           git stash drop
           git switch publish
-          echo "com.github.Minestom:minestom:$_VERSION
+          echo "com.github.Minestom:minestom:${{github.run_number}}
           https://$_ACTOR:$_TOKEN@maven.pkg.github.com/FreedyPlugins/Minestom" > libraries/release
           git commit -m "Release ${{github.run_number}}"
           git push origin publish
