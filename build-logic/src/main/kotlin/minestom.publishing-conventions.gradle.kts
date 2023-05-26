@@ -1,21 +1,22 @@
+import net.kyori.indra.IndraExtension
+
 plugins {
     id("net.kyori.indra")
     id("net.kyori.indra.publishing")
     id("net.kyori.indra.publishing.sonatype")
 }
 
-indra {
-    repositories {
-        maven {
-            name = "pkgs"
-            url = uri("https://s01.oss.sonatype.org/content/repositories/releases/")
-            credentials {
+fun IndraExtension.setupCredential() {
+    val SONATYPE_USERNAME: String? by System.getenv()
+    val SONATYPE_PASSWORD: String? by System.getenv()
+    publishReleasesTo(
+            SONATYPE_USERNAME ?: return,
+            SONATYPE_PASSWORD ?: return
+    )
+}
 
-                username = System.getenv("SONATYPE_USERNAME")
-                password = System.getenv("SONATYPE_PASSWORD")
-            }
-        }
-    }
+indra {
+    setupCredential()
 
     javaVersions {
         target(17)
