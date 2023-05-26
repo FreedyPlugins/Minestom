@@ -8,10 +8,14 @@ indra {
         target(17)
         testWith(17)
     }
-
-    github("Minestom", "Minestom") {
-        ci(true)
-        publishing()
+    runCatching {
+        val split = System.getenv()["GITHUB_REPOSITORY"]?.split("/")?: throw AssertionError()
+        val username = split[0]
+        val password = split[1]
+        github(username, password) {
+            ci(true)
+            publishing()
+        }
     }
     apache2License()
 
