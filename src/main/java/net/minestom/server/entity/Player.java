@@ -651,7 +651,7 @@ public class Player extends LivingEntity implements CommandSender, Localizable, 
      * @param updateChunks  true if chunks should be refreshed, false if the new instance shares the same
      *                      chunks
      */
-    private void spawnPlayer(@NotNull Instance instance, @NotNull Pos spawnPosition,
+    public void spawnPlayer(@NotNull Instance instance, @NotNull Pos spawnPosition,
                              boolean firstSpawn, boolean dimensionChange, boolean updateChunks) {
         if (!firstSpawn) {
             // Player instance changed, clear current viewable collections
@@ -1152,7 +1152,7 @@ public class Player extends LivingEntity implements CommandSender, Localizable, 
      * Called after the player teleportation to refresh his position
      * and send data to his new viewers.
      */
-    protected void refreshAfterTeleport() {
+    public void refreshAfterTeleport() {
         sendPacketsToViewers(getEntityType().registry().spawnType().getSpawnPacket(this));
 
         // Update for viewers
@@ -1351,7 +1351,7 @@ public class Player extends LivingEntity implements CommandSender, Localizable, 
      *
      * @param dimensionType the new player dimension
      */
-    protected void sendDimension(@NotNull DimensionType dimensionType) {
+    public void sendDimension(@NotNull DimensionType dimensionType) {
         Check.argCondition(dimensionType.equals(getDimensionType()),
                 "The dimension needs to be different than the current one!");
         this.dimensionType = dimensionType;
