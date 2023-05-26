@@ -26,8 +26,7 @@ tasks {
 
 indra {
     configurePublications {
-        this.setArtifacts(listOf(sourcesArtifact))
-        artifact(sourcesArtifact)
+        setArtifacts(listOf(sourcesArtifact, jarArtifact))
     }
     javaVersions {
         target(17)
