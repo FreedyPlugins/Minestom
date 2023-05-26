@@ -15,12 +15,12 @@ tasks {
     artifacts {
         sourcesArtifact = add("archives", sources)
     }
-    val classes by creating(Jar::class) {
+    val jarClasses by creating(Jar::class) {
         from(project.the<SourceSetContainer>()["main"].allJava)
     }
 
     artifacts {
-        sourcesArtifact = add("archives", classes)
+        sourcesArtifact = add("archives", jarClasses)
     }
 }
 
