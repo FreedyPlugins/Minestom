@@ -36,7 +36,7 @@ jobs:
           cd _work
           git clone --branch publish --single-branch https://github.com/${{ github.repository }}
           echo "com.github.Minestom:minestom:${{github.run_number}}
-          https://$_ACTOR:$_TOKEN@maven.pkg.github.com/FreedyPlugins/Minestom" > libraries/release
+          https://$_ACTOR:$_TOKEN@maven.pkg.github.com/FreedyPlugins/Minestom" > ./libraries/release
           git add .
           git commit -m "Release ${{github.run_number}}"
           git push origin publish
