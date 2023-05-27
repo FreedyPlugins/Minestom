@@ -286,7 +286,7 @@ public class DynamicChunk extends Chunk {
             70409299, 70409299, 0, 69273666, 69273666, 0, 68174084, 68174084, 0, Integer.MIN_VALUE,
             0, 5};
 
-    private static long[] encodeBlocks(int[] blocks, int bitsPerEntry) {
+    public static long[] encodeBlocks(int[] blocks, int bitsPerEntry) {
         final long maxEntryValue = (1L << bitsPerEntry) - 1;
         final char valuesPerLong = (char) (64 / bitsPerEntry);
         final int magicIndex = 3 * (valuesPerLong - 1);
