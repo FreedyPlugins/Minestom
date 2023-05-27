@@ -43,3 +43,11 @@ jobs:
           git config --local user.name "github-actions[bot]"        
           git commit -m "Release ${{github.run_number}}"
           git push origin publish
+      - name: release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          title: "Build #${{github.run_number}}"
+          automatic_release_tag: "${{github.run_number}}"
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          files: build/libs/*.jar
+          prerelease: false
