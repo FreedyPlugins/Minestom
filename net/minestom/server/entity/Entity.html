@@ -369,7 +369,7 @@ implements <a href="../Viewable.html" title="interface in net.minestom.server">V
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Gets the entity passengers.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected @NotNull <a href="../network/packet/server/play/SetPassengersPacket.html" title="class in net.minestom.server.network.packet.server.play">SetPassengersPacket</a></code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@NotNull <a href="../network/packet/server/play/SetPassengersPacket.html" title="class in net.minestom.server.network.packet.server.play">SetPassengersPacket</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPassengersPacket()" class="member-name-link">getPassengersPacket</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@NotNull <a href="Entity.Pose.html" title="enum class in net.minestom.server.entity">Entity.Pose</a></code></div>
@@ -408,7 +408,7 @@ implements <a href="../Viewable.html" title="interface in net.minestom.server">V
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Gets all the viewers of this viewable element.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#handleVoid()" class="member-name-link">handleVoid</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">How does this entity handle being in the void?</div>
@@ -504,28 +504,39 @@ implements <a href="../Viewable.html" title="interface in net.minestom.server">V
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Changes the view of the entity so that it looks in a direction to the given entity.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#refreshCurrentChunk(net.minestom.server.instance.Chunk)" class="member-name-link">refreshCurrentChunk</a><wbr>(<a href="../instance/Chunk.html" title="class in net.minestom.server.instance">Chunk</a>&nbsp;currentChunk)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#refreshCoordinate(net.minestom.server.coordinate.Point)" class="member-name-link">refreshCoordinate</a><wbr>(<a href="../coordinate/Point.html" title="interface in net.minestom.server.coordinate">Point</a>&nbsp;newPosition)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Used to refresh the entity and its passengers position
+ - put the entity in the right instance chunk
+ - update the viewable chunks (load and unload)
+ - add/remove players from the viewers list if <a href="#isAutoViewable()"><code>isAutoViewable()</code></a> is enabled</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#refreshPosition(net.minestom.server.coordinate.Pos)" class="member-name-link">refreshPosition</a><wbr>(@NotNull <a href="../coordinate/Pos.html" title="class in net.minestom.server.coordinate">Pos</a>&nbsp;newPosition)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#refreshCurrentChunk(net.minestom.server.instance.Chunk)" class="member-name-link">refreshCurrentChunk</a><wbr>(<a href="../instance/Chunk.html" title="class in net.minestom.server.instance">Chunk</a>&nbsp;currentChunk)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#refreshPosition(net.minestom.server.coordinate.Pos,boolean)" class="member-name-link">refreshPosition</a><wbr>(@NotNull <a href="../coordinate/Pos.html" title="class in net.minestom.server.coordinate">Pos</a>&nbsp;newPosition,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#refreshPosition(net.minestom.server.coordinate.Pos)" class="member-name-link">refreshPosition</a><wbr>(@NotNull <a href="../coordinate/Pos.html" title="class in net.minestom.server.coordinate">Pos</a>&nbsp;newPosition)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#refreshPosition(net.minestom.server.coordinate.Pos,boolean)" class="member-name-link">refreshPosition</a><wbr>(@NotNull <a href="../coordinate/Pos.html" title="class in net.minestom.server.coordinate">Pos</a>&nbsp;newPosition,
  boolean&nbsp;ignoreView)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Updates internal fields and sends updates.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#remove()" class="member-name-link">remove</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#remove()" class="member-name-link">remove</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Removes the entity from the server immediately.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeEffect(net.minestom.server.potion.PotionEffect)" class="member-name-link">removeEffect</a><wbr>(@NotNull <a href="../potion/PotionEffect.html" title="interface in net.minestom.server.potion">PotionEffect</a>&nbsp;effect)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeEffect(net.minestom.server.potion.PotionEffect)" class="member-name-link">removeEffect</a><wbr>(@NotNull <a href="../potion/PotionEffect.html" title="interface in net.minestom.server.potion">PotionEffect</a>&nbsp;effect)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Removes effect from entity, if it has it.</div>
 </div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeFromInstance(net.minestom.server.instance.Instance)" class="member-name-link">removeFromInstance</a><wbr>(<a href="../instance/Instance.html" title="class in net.minestom.server.instance">Instance</a>&nbsp;instance)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removePassenger(net.minestom.server.entity.Entity)" class="member-name-link">removePassenger</a><wbr>(@NotNull <a href="Entity.html" title="class in net.minestom.server.entity">Entity</a>&nbsp;entity)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -679,7 +690,7 @@ implements <a href="../Viewable.html" title="interface in net.minestom.server">V
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Changes the entity type of this entity.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#synchronizePosition(boolean)" class="member-name-link">synchronizePosition</a><wbr>(boolean&nbsp;includeSelf)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Used to synchronize entity position with viewers by sending an
@@ -732,32 +743,39 @@ implements <a href="../Viewable.html" title="interface in net.minestom.server">V
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Called when a viewer must be destroyed.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updatePose()" class="member-name-link">updatePose</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@NotNull <a href="../snapshot/EntitySnapshot.html" title="interface in net.minestom.server.snapshot">EntitySnapshot</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateSnapshot(net.minestom.server.snapshot.SnapshotUpdater)" class="member-name-link">updateSnapshot</a><wbr>(@NotNull <a href="../snapshot/SnapshotUpdater.html" title="interface in net.minestom.server.snapshot">SnapshotUpdater</a>&nbsp;updater)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updatePassengerPosition(net.minestom.server.coordinate.Point,net.minestom.server.entity.Entity)" class="member-name-link">updatePassengerPosition</a><wbr>(<a href="../coordinate/Point.html" title="interface in net.minestom.server.coordinate">Point</a>&nbsp;newPosition,
+ <a href="Entity.html" title="class in net.minestom.server.entity">Entity</a>&nbsp;passenger)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the X,Z coordinate of the passenger to the X,Z coordinate of this vehicle
+ and sets the Y coordinate of the passenger to the Y coordinate of this vehicle + <code>getPassengerHeightOffset()</code></div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updatePose()" class="member-name-link">updatePose</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@NotNull <a href="../snapshot/EntitySnapshot.html" title="interface in net.minestom.server.snapshot">EntitySnapshot</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateSnapshot(net.minestom.server.snapshot.SnapshotUpdater)" class="member-name-link">updateSnapshot</a><wbr>(@NotNull <a href="../snapshot/SnapshotUpdater.html" title="interface in net.minestom.server.snapshot">SnapshotUpdater</a>&nbsp;updater)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Updates the currently cached snapshot if required.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateVelocity(boolean,boolean,net.minestom.server.coordinate.Pos,net.minestom.server.coordinate.Vec)" class="member-name-link">updateVelocity</a><wbr>(boolean&nbsp;wasOnGround,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateVelocity(boolean,boolean,net.minestom.server.coordinate.Pos,net.minestom.server.coordinate.Vec)" class="member-name-link">updateVelocity</a><wbr>(boolean&nbsp;wasOnGround,
  boolean&nbsp;flying,
  <a href="../coordinate/Pos.html" title="class in net.minestom.server.coordinate">Pos</a>&nbsp;positionBeforeMove,
  <a href="../coordinate/Vec.html" title="class in net.minestom.server.coordinate">Vec</a>&nbsp;newVelocity)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateViewableRule()" class="member-name-link">updateViewableRule</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateViewableRule(java.util.function.Predicate)" class="member-name-link">updateViewableRule</a><wbr>(@Nullable <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Predicate.html" title="class or interface in java.util.function" class="external-link">Predicate</a>&lt;<a href="Player.html" title="class in net.minestom.server.entity">Player</a>&gt;&nbsp;predicate)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateViewableRule()" class="member-name-link">updateViewableRule</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateViewerRule()" class="member-name-link">updateViewerRule</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateViewableRule(java.util.function.Predicate)" class="member-name-link">updateViewableRule</a><wbr>(@Nullable <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Predicate.html" title="class or interface in java.util.function" class="external-link">Predicate</a>&lt;<a href="Player.html" title="class in net.minestom.server.entity">Player</a>&gt;&nbsp;predicate)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateViewerRule(java.util.function.Predicate)" class="member-name-link">updateViewerRule</a><wbr>(@Nullable <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Predicate.html" title="class or interface in java.util.function" class="external-link">Predicate</a>&lt;<a href="Entity.html" title="class in net.minestom.server.entity">Entity</a>&gt;&nbsp;predicate)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateViewerRule()" class="member-name-link">updateViewerRule</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateViewerRule(java.util.function.Predicate)" class="member-name-link">updateViewerRule</a><wbr>(@Nullable <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Predicate.html" title="class or interface in java.util.function" class="external-link">Predicate</a>&lt;<a href="Entity.html" title="class in net.minestom.server.entity">Entity</a>&gt;&nbsp;predicate)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -1326,7 +1344,7 @@ implements <a href="../Viewable.html" title="interface in net.minestom.server">V
 <li>
 <section class="detail" id="updateVelocity(boolean,boolean,net.minestom.server.coordinate.Pos,net.minestom.server.coordinate.Vec)">
 <h3>updateVelocity</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">updateVelocity</span><wbr><span class="parameters">(boolean&nbsp;wasOnGround,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">updateVelocity</span><wbr><span class="parameters">(boolean&nbsp;wasOnGround,
  boolean&nbsp;flying,
  <a href="../coordinate/Pos.html" title="class in net.minestom.server.coordinate">Pos</a>&nbsp;positionBeforeMove,
  <a href="../coordinate/Vec.html" title="class in net.minestom.server.coordinate">Vec</a>&nbsp;newVelocity)</span></div>
@@ -1346,7 +1364,7 @@ implements <a href="../Viewable.html" title="interface in net.minestom.server">V
 <li>
 <section class="detail" id="handleVoid()">
 <h3>handleVoid</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">handleVoid</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">handleVoid</span>()</div>
 <div class="block">How does this entity handle being in the void?</div>
 </section>
 </li>
@@ -1475,7 +1493,7 @@ implements <a href="../Viewable.html" title="interface in net.minestom.server">V
 <section class="detail" id="refreshCurrentChunk(net.minestom.server.instance.Chunk)">
 <h3>refreshCurrentChunk</h3>
 <div class="member-signature"><span class="annotations">@Internal
-</span><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">refreshCurrentChunk</span><wbr><span class="parameters">(<a href="../instance/Chunk.html" title="class in net.minestom.server.instance">Chunk</a>&nbsp;currentChunk)</span></div>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">refreshCurrentChunk</span><wbr><span class="parameters">(<a href="../instance/Chunk.html" title="class in net.minestom.server.instance">Chunk</a>&nbsp;currentChunk)</span></div>
 </section>
 </li>
 <li>
@@ -1535,6 +1553,12 @@ implements <a href="../Viewable.html" title="interface in net.minestom.server">V
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NullPointerException.html" title="class or interface in java.lang" class="external-link">NullPointerException</a></code> - if <code>instance</code> is null</dd>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalStateException.html" title="class or interface in java.lang" class="external-link">IllegalStateException</a></code> - if <code>instance</code> has not been registered in <a href="../instance/InstanceManager.html" title="class in net.minestom.server.instance"><code>InstanceManager</code></a></dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="removeFromInstance(net.minestom.server.instance.Instance)">
+<h3>removeFromInstance</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">removeFromInstance</span><wbr><span class="parameters">(<a href="../instance/Instance.html" title="class in net.minestom.server.instance">Instance</a>&nbsp;instance)</span></div>
 </section>
 </li>
 <li>
@@ -1730,7 +1754,7 @@ implements <a href="../Viewable.html" title="interface in net.minestom.server">V
 <section class="detail" id="getPassengersPacket()">
 <h3>getPassengersPacket</h3>
 <div class="member-signature"><span class="annotations">@NotNull
-</span><span class="modifiers">protected</span>&nbsp;<span class="return-type">@NotNull <a href="../network/packet/server/play/SetPassengersPacket.html" title="class in net.minestom.server.network.packet.server.play">SetPassengersPacket</a></span>&nbsp;<span class="element-name">getPassengersPacket</span>()</div>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">@NotNull <a href="../network/packet/server/play/SetPassengersPacket.html" title="class in net.minestom.server.network.packet.server.play">SetPassengersPacket</a></span>&nbsp;<span class="element-name">getPassengersPacket</span>()</div>
 </section>
 </li>
 <li>
@@ -1896,7 +1920,7 @@ implements <a href="../Viewable.html" title="interface in net.minestom.server">V
 <li>
 <section class="detail" id="updatePose()">
 <h3>updatePose</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">updatePose</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">updatePose</span>()</div>
 </section>
 </li>
 <li>
@@ -2000,6 +2024,36 @@ implements <a href="../Viewable.html" title="interface in net.minestom.server">V
 <div class="member-signature"><span class="annotations">@Internal
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">refreshPosition</span><wbr><span class="parameters">(@NotNull
  @NotNull <a href="../coordinate/Pos.html" title="class in net.minestom.server.coordinate">Pos</a>&nbsp;newPosition)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="updatePassengerPosition(net.minestom.server.coordinate.Point,net.minestom.server.entity.Entity)">
+<h3>updatePassengerPosition</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">updatePassengerPosition</span><wbr><span class="parameters">(<a href="../coordinate/Point.html" title="interface in net.minestom.server.coordinate">Point</a>&nbsp;newPosition,
+ <a href="Entity.html" title="class in net.minestom.server.entity">Entity</a>&nbsp;passenger)</span></div>
+<div class="block">Sets the X,Z coordinate of the passenger to the X,Z coordinate of this vehicle
+ and sets the Y coordinate of the passenger to the Y coordinate of this vehicle + <code>getPassengerHeightOffset()</code></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>newPosition</code> - The X,Y,Z position of this vehicle</dd>
+<dd><code>passenger</code> - The passenger to be moved</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="refreshCoordinate(net.minestom.server.coordinate.Point)">
+<h3>refreshCoordinate</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">refreshCoordinate</span><wbr><span class="parameters">(<a href="../coordinate/Point.html" title="interface in net.minestom.server.coordinate">Point</a>&nbsp;newPosition)</span></div>
+<div class="block">Used to refresh the entity and its passengers position
+ - put the entity in the right instance chunk
+ - update the viewable chunks (load and unload)
+ - add/remove players from the viewers list if <a href="#isAutoViewable()"><code>isAutoViewable()</code></a> is enabled
+ <p>
+ WARNING: unsafe, should only be used internally in Minestom. Use <a href="#teleport(net.minestom.server.coordinate.Pos)"><code>teleport(Pos)</code></a> instead.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>newPosition</code> - the new position</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -2146,7 +2200,7 @@ implements <a href="../Viewable.html" title="interface in net.minestom.server">V
 <section class="detail" id="synchronizePosition(boolean)">
 <h3>synchronizePosition</h3>
 <div class="member-signature"><span class="annotations">@Internal
-</span><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">synchronizePosition</span><wbr><span class="parameters">(boolean&nbsp;includeSelf)</span></div>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">synchronizePosition</span><wbr><span class="parameters">(boolean&nbsp;includeSelf)</span></div>
 <div class="block">Used to synchronize entity position with viewers by sending an
  <a href="../network/packet/server/play/EntityTeleportPacket.html" title="class in net.minestom.server.network.packet.server.play"><code>EntityTeleportPacket</code></a> to viewers, in case of a player this is
  overridden in order to send an additional <a href="../network/packet/server/play/PlayerPositionAndLookPacket.html" title="class in net.minestom.server.network.packet.server.play"><code>PlayerPositionAndLookPacket</code></a>
