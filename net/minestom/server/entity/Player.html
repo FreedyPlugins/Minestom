@@ -138,15 +138,33 @@ implements <a href="../command/CommandSender.html" title="interface in net.mines
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>protected <a href="../utils/time/Cooldown.html" title="class in net.minestom.server.utils.time">Cooldown</a></code></div>
-<div class="col-second even-row-color"><code><a href="#experiencePickupCooldown" class="member-name-link">experiencePickupCooldown</a></code></div>
+<div class="col-first even-row-color"><code>final <a href="../utils/function/IntegerBiConsumer.html" title="interface in net.minestom.server.utils.function">IntegerBiConsumer</a></code></div>
+<div class="col-second even-row-color"><code><a href="#chunkAdder" class="member-name-link">chunkAdder</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>protected <a href="../inventory/PlayerInventory.html" title="class in net.minestom.server.inventory">PlayerInventory</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#inventory" class="member-name-link">inventory</a></code></div>
+<div class="col-first odd-row-color"><code>final <a href="../utils/function/IntegerBiConsumer.html" title="interface in net.minestom.server.utils.function">IntegerBiConsumer</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#chunkRemover" class="member-name-link">chunkRemover</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>protected final <a href="../network/player/PlayerConnection.html" title="class in net.minestom.server.network.player">PlayerConnection</a></code></div>
-<div class="col-second even-row-color"><code><a href="#playerConnection" class="member-name-link">playerConnection</a></code></div>
+<div class="col-first even-row-color"><code><a href="../coordinate/Vec.html" title="class in net.minestom.server.coordinate">Vec</a></code></div>
+<div class="col-second even-row-color"><code><a href="#chunksLoadedByClient" class="member-name-link">chunksLoadedByClient</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Keeps track of what chunks are sent to the client, this defines the center of the loaded area
+ in the range of <a href="../MinecraftServer.html#getChunkViewDistance()"><code>MinecraftServer.getChunkViewDistance()</code></a></div>
+</div>
+<div class="col-first odd-row-color"><code>final <a href="../utils/chunk/ChunkUpdateLimitChecker.html" title="class in net.minestom.server.utils.chunk">ChunkUpdateLimitChecker</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#chunkUpdateLimitChecker" class="member-name-link">chunkUpdateLimitChecker</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code><a href="../world/DimensionType.html" title="class in net.minestom.server.world">DimensionType</a></code></div>
+<div class="col-second even-row-color"><code><a href="#dimensionType" class="member-name-link">dimensionType</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>protected <a href="../utils/time/Cooldown.html" title="class in net.minestom.server.utils.time">Cooldown</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#experiencePickupCooldown" class="member-name-link">experiencePickupCooldown</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>protected <a href="../inventory/PlayerInventory.html" title="class in net.minestom.server.inventory">PlayerInventory</a></code></div>
+<div class="col-second even-row-color"><code><a href="#inventory" class="member-name-link">inventory</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>protected final <a href="../network/player/PlayerConnection.html" title="class in net.minestom.server.network.player">PlayerConnection</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#playerConnection" class="member-name-link">playerConnection</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
 </div>
 <div class="inherited-list">
 <h3 id="fields-inherited-from-class-net.minestom.server.entity.LivingEntity">Fields inherited from class&nbsp;net.minestom.server.entity.<a href="LivingEntity.html" title="class in net.minestom.server.entity">LivingEntity</a></h3>
@@ -1014,9 +1032,41 @@ implements <a href="../command/CommandSender.html" title="interface in net.mines
 </section>
 </li>
 <li>
+<section class="detail" id="dimensionType">
+<h3>dimensionType</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../world/DimensionType.html" title="class in net.minestom.server.world">DimensionType</a></span>&nbsp;<span class="element-name">dimensionType</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="chunksLoadedByClient">
+<h3>chunksLoadedByClient</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../coordinate/Vec.html" title="class in net.minestom.server.coordinate">Vec</a></span>&nbsp;<span class="element-name">chunksLoadedByClient</span></div>
+<div class="block">Keeps track of what chunks are sent to the client, this defines the center of the loaded area
+ in the range of <a href="../MinecraftServer.html#getChunkViewDistance()"><code>MinecraftServer.getChunkViewDistance()</code></a></div>
+</section>
+</li>
+<li>
+<section class="detail" id="chunkAdder">
+<h3>chunkAdder</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="../utils/function/IntegerBiConsumer.html" title="interface in net.minestom.server.utils.function">IntegerBiConsumer</a></span>&nbsp;<span class="element-name">chunkAdder</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="chunkRemover">
+<h3>chunkRemover</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="../utils/function/IntegerBiConsumer.html" title="interface in net.minestom.server.utils.function">IntegerBiConsumer</a></span>&nbsp;<span class="element-name">chunkRemover</span></div>
+</section>
+</li>
+<li>
 <section class="detail" id="inventory">
 <h3>inventory</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="../inventory/PlayerInventory.html" title="class in net.minestom.server.inventory">PlayerInventory</a></span>&nbsp;<span class="element-name">inventory</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="chunkUpdateLimitChecker">
+<h3>chunkUpdateLimitChecker</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="../utils/chunk/ChunkUpdateLimitChecker.html" title="class in net.minestom.server.utils.chunk">ChunkUpdateLimitChecker</a></span>&nbsp;<span class="element-name">chunkUpdateLimitChecker</span></div>
 </section>
 </li>
 <li>
