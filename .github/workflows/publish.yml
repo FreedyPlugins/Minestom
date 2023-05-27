@@ -31,10 +31,13 @@ jobs:
       - run: git tag ${{github.run_number}}
       - name: Execute Gradle build
         run: ./gradlew publish
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          ref: publish
+          token: ${{ secrets.GITHUB_TOKEN }}
       - run: |
           git remote set-url origin https://${{github.actor}}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git pull
-          git switch publish
           mkdir libraries || true
           echo "com.github.Minestom:minestom:${{github.run_number}}
           https://\$_ACTOR:\$_TOKEN@maven.pkg.github.com/FreedyPlugins/Minestom" > ./libraries/release
