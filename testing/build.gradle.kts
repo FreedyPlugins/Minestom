@@ -12,6 +12,13 @@ publishing {
             val artifactList = ArrayList<PublishArtifact>()
             File("build/libs/").listFiles { file, s -> s.endsWith(".jar") }
                     ?.forEach { artifacts { artifactList.add(add("archives", it)) } }
+                    tasks {
+                        artifacts {
+                            add("archives", create("sources-archives", Jar::class) {
+                                from(rootProject.the<SourceSetContainer>()["Main"].allSource)
+                            }).let { artifactList.add(it) }
+                        }
+                    }
             setArtifacts(artifactList)
         }
     }
