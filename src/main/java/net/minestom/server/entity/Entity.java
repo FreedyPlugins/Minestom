@@ -94,7 +94,7 @@ public class Entity implements Viewable, Tickable, Schedulable, Snapshotable, Ev
 
     private final CachedPacket destroyPacketCache = new CachedPacket(() -> new DestroyEntitiesPacket(getEntityId()));
 
-    protected Instance instance;
+    public Instance instance;
     protected Chunk currentChunk;
     protected Pos position;
     protected Pos previousPosition;
