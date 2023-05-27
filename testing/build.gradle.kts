@@ -15,7 +15,7 @@ publishing {
     repositories {
         maven {
             name = "Packages"
-            url = uri("/Users/ijong-won/IdeaProjects/Minestom/published")
+            url = uri("https://maven.pkg.github.com/%s".format(System.getenv()["GITHUB_REPOSITORY"]))
             credentials {
                 this.username = System.getenv()["GITHUB_REPOSITORY"]?.split("/")?.get(0)
                 this.password = System.getenv()["GITHUB_TOKEN"]
