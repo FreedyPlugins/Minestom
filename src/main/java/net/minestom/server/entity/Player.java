@@ -122,15 +122,15 @@ public class Player extends LivingEntity implements CommandSender, Localizable, 
     private Component displayName;
     private PlayerSkin skin;
 
-    private DimensionType dimensionType;
+    public DimensionType dimensionType;
     private GameMode gameMode;
     private DeathLocation deathLocation;
     /**
      * Keeps track of what chunks are sent to the client, this defines the center of the loaded area
      * in the range of {@link MinecraftServer#getChunkViewDistance()}
      */
-    private Vec chunksLoadedByClient = Vec.ZERO;
-    final IntegerBiConsumer chunkAdder = (chunkX, chunkZ) -> {
+    public Vec chunksLoadedByClient = Vec.ZERO;
+    public final IntegerBiConsumer chunkAdder = (chunkX, chunkZ) -> {
         // Load new chunks
         this.instance.loadOptionalChunk(chunkX, chunkZ).thenAccept(chunk -> {
             try {
@@ -143,7 +143,7 @@ public class Player extends LivingEntity implements CommandSender, Localizable, 
             }
         });
     };
-    final IntegerBiConsumer chunkRemover = (chunkX, chunkZ) -> {
+    public final IntegerBiConsumer chunkRemover = (chunkX, chunkZ) -> {
         // Unload old chunks
         sendPacket(new UnloadChunkPacket(chunkX, chunkZ));
         EventDispatcher.call(new PlayerChunkUnloadEvent(this, chunkX, chunkZ));
@@ -176,7 +176,7 @@ public class Player extends LivingEntity implements CommandSender, Localizable, 
 
     // Game state (https://wiki.vg/Protocol#Change_Game_State)
     private boolean enableRespawnScreen;
-    private final ChunkUpdateLimitChecker chunkUpdateLimitChecker = new ChunkUpdateLimitChecker(6);
+    public final ChunkUpdateLimitChecker chunkUpdateLimitChecker = new ChunkUpdateLimitChecker(6);
 
     // Experience orb pickup
     protected Cooldown experiencePickupCooldown = new Cooldown(Duration.of(10, TimeUnit.SERVER_TICK));
