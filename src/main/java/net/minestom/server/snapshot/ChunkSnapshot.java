@@ -7,8 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 
-public sealed interface ChunkSnapshot extends Snapshot, Block.Getter, Biome.Getter, TagReadable
-        permits SnapshotImpl.Chunk {
+public interface ChunkSnapshot extends Snapshot, Block.Getter, Biome.Getter, TagReadable {
     int chunkX();
 
     int chunkZ();
