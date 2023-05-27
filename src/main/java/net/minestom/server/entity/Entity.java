@@ -96,8 +96,8 @@ public class Entity implements Viewable, Tickable, Schedulable, Snapshotable, Ev
 
     public Instance instance;
     protected Chunk currentChunk;
-    protected Pos position;
-    protected Pos previousPosition;
+    public Pos position;
+    public Pos previousPosition;
     protected Pos lastSyncedPosition;
     protected boolean onGround;
 
@@ -158,7 +158,7 @@ public class Entity implements Viewable, Tickable, Schedulable, Snapshotable, Ev
     private final Set<Permission> permissions = new CopyOnWriteArraySet<>();
 
     protected UUID uuid;
-    private boolean isActive; // False if entity has only been instanced without being added somewhere
+    public boolean isActive; // False if entity has only been instanced without being added somewhere
     private boolean removed;
 
     private final Set<Entity> passengers = new CopyOnWriteArraySet<>();
