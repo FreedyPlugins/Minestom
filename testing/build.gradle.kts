@@ -15,7 +15,7 @@ publishing {
                     tasks {
                         artifacts {
                             add("archives", create("sources-archives", Jar::class) {
-                                from(rootProject.the<SourceSetContainer>()["Main"].allSource)
+                                from(rootProject.the<SourceSetContainer>()["main"].allSource)
                             }).let { artifactList.add(it) }
                         }
                     }
