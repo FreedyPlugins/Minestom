@@ -637,7 +637,7 @@ public class Entity implements Viewable, Tickable, Schedulable, Snapshotable, Ev
         }
     }
 
-    protected void updateVelocity(boolean wasOnGround, boolean flying, Pos positionBeforeMove, Vec newVelocity) {
+    public void updateVelocity(boolean wasOnGround, boolean flying, Pos positionBeforeMove, Vec newVelocity) {
         EntitySpawnType type = entityType.registry().spawnType();
         final double airDrag = type == EntitySpawnType.LIVING || type == EntitySpawnType.PLAYER ? 0.91 : 0.98;
         final double drag;
@@ -724,7 +724,7 @@ public class Entity implements Viewable, Tickable, Schedulable, Snapshotable, Ev
     /**
      * How does this entity handle being in the void?
      */
-    protected void handleVoid() {
+    public void handleVoid() {
         // Kill if in void
         if (getInstance().isInVoid(this.position)) {
             remove();
@@ -828,7 +828,7 @@ public class Entity implements Viewable, Tickable, Schedulable, Snapshotable, Ev
     }
 
     @ApiStatus.Internal
-    protected void refreshCurrentChunk(Chunk currentChunk) {
+    public void refreshCurrentChunk(Chunk currentChunk) {
         this.currentChunk = currentChunk;
         MinecraftServer.process().dispatcher().updateElement(this, currentChunk);
     }
@@ -902,7 +902,7 @@ public class Entity implements Viewable, Tickable, Schedulable, Snapshotable, Ev
         return setInstance(instance, this.position);
     }
 
-    private void removeFromInstance(Instance instance) {
+    public void removeFromInstance(Instance instance) {
         EventDispatcher.call(new RemoveEntityFromInstanceEvent(instance, this));
         instance.getEntityTracker().unregister(this, trackingTarget, trackingUpdate);
         this.viewEngine.forManuals(this::removeViewer);
@@ -1075,7 +1075,7 @@ public class Entity implements Viewable, Tickable, Schedulable, Snapshotable, Ev
         return Collections.unmodifiableSet(passengers);
     }
 
-    protected @NotNull SetPassengersPacket getPassengersPacket() {
+    public @NotNull SetPassengersPacket getPassengersPacket() {
         return new SetPassengersPacket(getEntityId(), passengers.stream().map(Entity::getEntityId).toList());
     }
 
@@ -1212,7 +1212,7 @@ public class Entity implements Viewable, Tickable, Schedulable, Snapshotable, Ev
         this.entityMeta.setPose(pose);
     }
 
-    protected void updatePose() {
+    public void updatePose() {
         if (entityMeta.isFlyingWithElytra()) {
             setPose(Pose.FALL_FLYING);
         } else if (entityMeta.isSwimming()) {
@@ -1356,7 +1356,7 @@ public class Entity implements Viewable, Tickable, Schedulable, Snapshotable, Ev
      * @param newPosition The X,Y,Z position of this vehicle
      * @param passenger   The passenger to be moved
      */
-    private void updatePassengerPosition(Point newPosition, Entity passenger) {
+    public void updatePassengerPosition(Point newPosition, Entity passenger) {
         final Pos oldPassengerPos = passenger.position;
         final Pos newPassengerPos = oldPassengerPos.withCoord(newPosition.x(),
                 newPosition.y() + getPassengerHeightOffset(),
@@ -1376,7 +1376,7 @@ public class Entity implements Viewable, Tickable, Schedulable, Snapshotable, Ev
      *
      * @param newPosition the new position
      */
-    private void refreshCoordinate(Point newPosition) {
+    public void refreshCoordinate(Point newPosition) {
         // Passengers update
         final Set<Entity> passengers = getPassengers();
         if (!passengers.isEmpty()) {
@@ -1553,7 +1553,7 @@ public class Entity implements Viewable, Tickable, Schedulable, Snapshotable, Ev
      *                    will be sent to the player itself
      */
     @ApiStatus.Internal
-    protected void synchronizePosition(boolean includeSelf) {
+    public void synchronizePosition(boolean includeSelf) {
         final Pos posCache = this.position;
         final ServerPacket packet = new EntityTeleportPacket(getEntityId(), posCache, isOnGround());
         PacketUtils.prepareViewablePacket(currentChunk, packet, this);
