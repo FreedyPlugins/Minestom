@@ -141,7 +141,7 @@ public class FakePlayer extends Player implements NavigableEntity {
      * {@inheritDoc}
      */
     @Override
-    protected void showPlayer(@NotNull PlayerConnection connection) {
+    public void showPlayer(@NotNull PlayerConnection connection) {
         super.showPlayer(connection);
         handleTabList(connection);
     }
