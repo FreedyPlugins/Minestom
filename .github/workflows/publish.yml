@@ -36,7 +36,6 @@ jobs:
       - run: |
 
           sudo apt install maven -y
-          cd $(basename ${{ github.repository }} /)
             function mirror() {
             echo "---" 
             echo $1
