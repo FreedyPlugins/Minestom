@@ -4,7 +4,7 @@ plugins {
     application
     id("minestom.common-conventions")
     id("minestom.native-conventions")
-    id("com.github.johnrengelman.shadow") version ("7.1.1")
+    id("com.github.johnrengelman.shadow") version ("7.1.2")
 }
 
 application {

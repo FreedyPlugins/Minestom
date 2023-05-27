@@ -1,11 +1,6 @@
 plugins {
     id("java-library")
     `maven-publish`
-    id("com.github.johnrengelman.shadow") version "7.1.2"
-}
-
-tasks.shadowJar {
-    archiveClassifier.set("")
 }
 
 publishing {
@@ -14,7 +9,10 @@ publishing {
             groupId = "com.github.Minestom"
             artifactId = "minestom"
             version = System.getenv()["GITHUB_BUILD_NUMBER"]
-            File("build/libs/").listFiles()?.forEach { artifact(it) }
+            val artifactList = ArrayList<PublishArtifact>()
+            File("build/libs/").listFiles { file, s -> s.endsWith(".jar") }
+                    ?.forEach { artifacts { artifactList.add(add("archives", it)) } }
+            setArtifacts(artifactList)
         }
     }
     repositories {

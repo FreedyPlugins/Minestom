@@ -3,7 +3,14 @@ plugins {
     id("minestom.publishing-conventions")
     id("minestom.native-conventions")
     alias(libs.plugins.blossom)
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
+
+tasks.shadowJar {
+    dependsOn(tasks.jar)
+    archiveClassifier.set("")
+}
+
 
 allprojects {
     group = "net.minestom.server"
