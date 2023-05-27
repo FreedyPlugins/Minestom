@@ -3,23 +3,40 @@ plugins {
     `maven-publish`
 }
 
+lateinit var sourcesArtifact: PublishArtifact
+lateinit var jarArtifact: PublishArtifact
+tasks {
+    artifacts {
+        sourcesArtifact = add("archives", create("source-archives", Jar::class) {
+            from(rootProject.components["java"])
+        })
+    }
+    artifacts {
+        jarArtifact = add("archives", create("class-archives", Jar::class) {
+            from(rootProject.the<SourceSetContainer>()["main"].output)
+        })
+    }
+}
+
+
 publishing {
     publications {
         create<MavenPublication>("maven") {
             groupId = "com.github.Minestom"
             artifactId = "minestom"
             version = System.getenv()["GITHUB_BUILD_NUMBER"]
-            from(rootProject.components["java"])
+            setArtifacts(listOf(sourcesArtifact, jarArtifact))
         }
     }
     repositories {
         maven {
             name = "Packages"
-            url = uri("https://maven.pkg.github.com/%s".format(System.getenv()["GITHUB_REPOSITORY"]))
-            credentials {
-                this.username = System.getenv()["GITHUB_REPOSITORY"]?.split("/")?.get(0)
-                this.password = System.getenv()["GITHUB_TOKEN"]
-            }
+            url = uri("./published")
+//            url = uri("https://maven.pkg.github.com/%s".format(System.getenv()["GITHUB_REPOSITORY"]))
+//            credentials {
+//                this.username = System.getenv()["GITHUB_REPOSITORY"]?.split("/")?.get(0)
+//                this.password = System.getenv()["GITHUB_TOKEN"]
+//            }
         }
     }
 }
