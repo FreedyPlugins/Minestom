@@ -584,7 +584,7 @@ public class LivingEntity extends Entity implements EquipmentHandler {
     }
 
     @Override
-    protected void handleVoid() {
+    public void handleVoid() {
         // Kill if in void
         if (getInstance().isInVoid(this.position)) {
             damage(DamageType.VOID, 10f);
