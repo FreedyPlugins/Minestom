@@ -488,7 +488,7 @@ public class Player extends LivingEntity implements CommandSender, Localizable, 
     /**
      * Sends necessary packets to synchronize player data after a {@link RespawnPacket}
      */
-    private void refreshClientStateAfterRespawn() {
+    public void refreshClientStateAfterRespawn() {
         sendPacket(new UpdateHealthPacket(this.getHealth(), food, foodSaturation));
         sendPacket(new SetExperiencePacket(exp, level, 0));
         triggerStatus((byte) (24 + permissionLevel)); // Set permission level
@@ -1096,7 +1096,7 @@ public class Player extends LivingEntity implements CommandSender, Localizable, 
         facePosition(facePoint, entity.getPosition(), entity, targetPoint);
     }
 
-    private void facePosition(@NotNull FacePoint facePoint, @NotNull Point targetPosition,
+    public void facePosition(@NotNull FacePoint facePoint, @NotNull Point targetPosition,
                               @Nullable Entity entity, @Nullable FacePoint targetPoint) {
         final int entityId = entity != null ? entity.getEntityId() : 0;
         sendPacket(new FacePlayerPacket(
@@ -1162,7 +1162,7 @@ public class Player extends LivingEntity implements CommandSender, Localizable, 
     /**
      * Sets the player food and health values to their maximum.
      */
-    protected void refreshHealth() {
+    public void refreshHealth() {
         this.food = 20;
         this.foodSaturation = 5;
         // refresh health and send health packet
@@ -1545,7 +1545,7 @@ public class Player extends LivingEntity implements CommandSender, Localizable, 
      */
     @Override
     @ApiStatus.Internal
-    protected void synchronizePosition(boolean includeSelf) {
+    public void synchronizePosition(boolean includeSelf) {
         if (includeSelf) {
             sendPacket(new PlayerPositionAndLookPacket(position, (byte) 0x00, getNextTeleportId(), false));
         }
@@ -1922,7 +1922,7 @@ public class Player extends LivingEntity implements CommandSender, Localizable, 
      *
      * @return a {@link PlayerInfoUpdatePacket} to add the player
      */
-    protected @NotNull PlayerInfoUpdatePacket getAddPlayerToList() {
+    public @NotNull PlayerInfoUpdatePacket getAddPlayerToList() {
         return new PlayerInfoUpdatePacket(EnumSet.of(PlayerInfoUpdatePacket.Action.ADD_PLAYER, PlayerInfoUpdatePacket.Action.UPDATE_LISTED),
                 List.of(infoEntry()));
     }
@@ -1932,11 +1932,11 @@ public class Player extends LivingEntity implements CommandSender, Localizable, 
      *
      * @return a {@link PlayerInfoRemovePacket} to remove the player
      */
-    protected @NotNull PlayerInfoRemovePacket getRemovePlayerToList() {
+    public @NotNull PlayerInfoRemovePacket getRemovePlayerToList() {
         return new PlayerInfoRemovePacket(getUuid());
     }
 
-    private PlayerInfoUpdatePacket.Entry infoEntry() {
+    public PlayerInfoUpdatePacket.Entry infoEntry() {
         final PlayerSkin skin = this.skin;
         List<PlayerInfoUpdatePacket.Property> prop = skin != null ?
                 List.of(new PlayerInfoUpdatePacket.Property("textures", skin.textures(), skin.signature())) :
@@ -1953,7 +1953,7 @@ public class Player extends LivingEntity implements CommandSender, Localizable, 
      *
      * @param connection the connection to show the player to
      */
-    protected void showPlayer(@NotNull PlayerConnection connection) {
+    public void showPlayer(@NotNull PlayerConnection connection) {
         connection.sendPacket(getEntityType().registry().spawnType().getSpawnPacket(this));
         connection.sendPacket(getVelocityPacket());
         connection.sendPacket(getMetadataPacket());
@@ -2079,7 +2079,7 @@ public class Player extends LivingEntity implements CommandSender, Localizable, 
         return this;
     }
 
-    protected void sendChunkUpdates(Chunk newChunk) {
+    public void sendChunkUpdates(Chunk newChunk) {
         if (chunkUpdateLimitChecker.addToHistory(newChunk)) {
             final int newX = newChunk.getChunkX();
             final int newZ = newChunk.getChunkZ();
