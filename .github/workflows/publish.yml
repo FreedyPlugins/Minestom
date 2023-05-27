@@ -36,11 +36,7 @@ jobs:
       - run: |
 
           sudo apt install maven -y
-          git clone -b ${GITHUB_REF##*/} --single-branch https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          mkdir libraries || true
-          echo "com.github.Minestom:minestom:${{github.run_number}}
-          https://\$_ACTOR:\$_TOKEN@maven.pkg.github.com/FreedyPlugins/Minestom" > ./libraries/release
-          
+          git clone -b ${GITHUB_REF##*/} --single-branch https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}          
           cd $(basename ${{ github.repository }} /)
             function mirror() {
             echo "---" 
@@ -64,6 +60,9 @@ jobs:
             git push https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} $artifactId --force && true --quiet
             cd ..
           }
+          mkdir libraries || true
+          echo "com.github.Minestom:minestom:${{github.run_number}}
+          https://\$_ACTOR:\$_TOKEN@maven.pkg.github.com/FreedyPlugins/Minestom" > ./libraries/release
 
           cd libraries
           for filename in *; do
