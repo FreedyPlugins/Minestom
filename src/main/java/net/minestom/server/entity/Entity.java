@@ -128,9 +128,9 @@ public class Entity implements Viewable, Tickable, Schedulable, Snapshotable, Ev
     private final int id;
     // Players must be aware of all surrounding entities
     // General entities should only be aware of surrounding players to update their viewing list
-    private final EntityTracker.Target<Entity> trackingTarget = this instanceof Player ?
+    public final EntityTracker.Target<Entity> trackingTarget = this instanceof Player ?
             EntityTracker.Target.ENTITIES : EntityTracker.Target.class.cast(EntityTracker.Target.PLAYERS);
-    protected final EntityTracker.Update<Entity> trackingUpdate = new EntityTracker.Update<>() {
+    public final EntityTracker.Update<Entity> trackingUpdate = new EntityTracker.Update<>() {
         @Override
         public void add(@NotNull Entity entity) {
             viewEngine.handleAutoViewAddition(entity);
