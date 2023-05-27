@@ -1,42 +1,31 @@
 plugins {
     id("java-library")
     `maven-publish`
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
-lateinit var sourcesArtifact: PublishArtifact
-lateinit var jarArtifact: PublishArtifact
-tasks {
-    artifacts {
-        sourcesArtifact = add("archives", create("source-archives", Jar::class) {
-            from(rootProject.components["java"])
-        })
-    }
-    artifacts {
-        jarArtifact = add("archives", create("class-archives", Jar::class) {
-            from(rootProject.the<SourceSetContainer>()["main"].java)
-        })
-    }
+tasks.shadowJar {
+    archiveClassifier.set("")
 }
-
 
 publishing {
     publications {
         create<MavenPublication>("maven") {
             groupId = "com.github.Minestom"
             artifactId = "minestom"
-            version = System.getenv()["GITHUB_BUILD_NUMBER"]
-            setArtifacts(listOf(sourcesArtifact, jarArtifact))
+//            version = System.getenv()["GITHUB_BUILD_NUMBER"]
+            File("build/libs/").listFiles()?.forEach { artifact(it) }
         }
     }
     repositories {
         maven {
             name = "Packages"
-//            url = uri("./published")
-            url = uri("https://maven.pkg.github.com/%s".format(System.getenv()["GITHUB_REPOSITORY"]))
-            credentials {
-                this.username = System.getenv()["GITHUB_REPOSITORY"]?.split("/")?.get(0)
-                this.password = System.getenv()["GITHUB_TOKEN"]
-            }
+            url = uri("/Users/ijong-won/IdeaProjects/Minestom/published")
+//            url = uri("https://maven.pkg.github.com/%s".format(System.getenv()["GITHUB_REPOSITORY"]))
+//            credentials {
+//                this.username = System.getenv()["GITHUB_REPOSITORY"]?.split("/")?.get(0)
+//                this.password = System.getenv()["GITHUB_TOKEN"]
+//            }
         }
     }
 }
