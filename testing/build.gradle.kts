@@ -13,7 +13,7 @@ tasks {
     }
     artifacts {
         jarArtifact = add("archives", create("class-archives", Jar::class) {
-            from(rootProject.the<SourceSetContainer>()["main"].output)
+            from(rootProject.the<SourceSetContainer>()["main"].java)
         })
     }
 }
