@@ -108,10 +108,16 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>protected final it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap&lt;<a href="block/Block.html" title="interface in net.minestom.server.instance.block">Block</a>&gt;</code></div>
-<div class="col-second even-row-color"><code><a href="#entries" class="member-name-link">entries</a></code></div>
+<div class="col-first even-row-color"><code>final <a href="../network/packet/server/CachedPacket.html" title="class in net.minestom.server.network.packet.server">CachedPacket</a></code></div>
+<div class="col-second even-row-color"><code><a href="#chunkCache" class="member-name-link">chunkCache</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>protected final it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap&lt;<a href="block/Block.html" title="interface in net.minestom.server.instance.block">Block</a>&gt;</code></div>
+<div class="col-first odd-row-color"><code>final it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap&lt;<a href="block/Block.html" title="interface in net.minestom.server.instance.block">Block</a>&gt;</code></div>
+<div class="col-second odd-row-color"><code><a href="#entries" class="member-name-link">entries</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>final <a href="../network/packet/server/CachedPacket.html" title="class in net.minestom.server.network.packet.server">CachedPacket</a></code></div>
+<div class="col-second even-row-color"><code><a href="#lightCache" class="member-name-link">lightCache</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>final it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap&lt;<a href="block/Block.html" title="interface in net.minestom.server.instance.block">Block</a>&gt;</code></div>
 <div class="col-second odd-row-color"><code><a href="#tickableMap" class="member-name-link">tickableMap</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 </div>
@@ -257,13 +263,25 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="entries">
 <h3>entries</h3>
-<div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type">it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap&lt;<a href="block/Block.html" title="interface in net.minestom.server.instance.block">Block</a>&gt;</span>&nbsp;<span class="element-name">entries</span></div>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap&lt;<a href="block/Block.html" title="interface in net.minestom.server.instance.block">Block</a>&gt;</span>&nbsp;<span class="element-name">entries</span></div>
 </section>
 </li>
 <li>
 <section class="detail" id="tickableMap">
 <h3>tickableMap</h3>
-<div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type">it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap&lt;<a href="block/Block.html" title="interface in net.minestom.server.instance.block">Block</a>&gt;</span>&nbsp;<span class="element-name">tickableMap</span></div>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap&lt;<a href="block/Block.html" title="interface in net.minestom.server.instance.block">Block</a>&gt;</span>&nbsp;<span class="element-name">tickableMap</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="chunkCache">
+<h3>chunkCache</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="../network/packet/server/CachedPacket.html" title="class in net.minestom.server.network.packet.server">CachedPacket</a></span>&nbsp;<span class="element-name">chunkCache</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="lightCache">
+<h3>lightCache</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="../network/packet/server/CachedPacket.html" title="class in net.minestom.server.network.packet.server">CachedPacket</a></span>&nbsp;<span class="element-name">lightCache</span></div>
 </section>
 </li>
 </ul>
