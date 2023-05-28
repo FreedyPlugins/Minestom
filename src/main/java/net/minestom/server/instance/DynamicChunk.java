@@ -42,12 +42,12 @@ public class DynamicChunk extends Chunk {
     private List<Section> sections;
 
     // Key = ChunkUtils#getBlockIndex
-    protected final Int2ObjectOpenHashMap<Block> entries = new Int2ObjectOpenHashMap<>(0);
-    protected final Int2ObjectOpenHashMap<Block> tickableMap = new Int2ObjectOpenHashMap<>(0);
+    public final Int2ObjectOpenHashMap<Block> entries = new Int2ObjectOpenHashMap<>(0);
+    public final Int2ObjectOpenHashMap<Block> tickableMap = new Int2ObjectOpenHashMap<>(0);
 
     private long lastChange;
-    final CachedPacket chunkCache = new CachedPacket(this::createChunkPacket);
-    final CachedPacket lightCache = new CachedPacket(this::createLightPacket);
+    public final CachedPacket chunkCache = new CachedPacket(this::createChunkPacket);
+    public final CachedPacket lightCache = new CachedPacket(this::createLightPacket);
 
     public DynamicChunk(@NotNull Instance instance, int chunkX, int chunkZ) {
         super(instance, chunkX, chunkZ, true);
