@@ -580,27 +580,26 @@ public class Player extends LivingEntity implements CommandSender, Localizable, 
         final boolean dimensionChange = !Objects.equals(dimensionType, instance.getDimensionType());
         final Consumer<Instance> runnable = (i) -> spawnPlayer(i, spawnPosition,
                 currentInstance == null, dimensionChange, true);
-
-        // Ensure that surrounding chunks are loaded
+//         Ensure that surrounding chunks are loaded
         List<CompletableFuture<Chunk>> futures = new ArrayList<>();
-        ChunkUtils.forChunksInRange(spawnPosition, MinecraftServer.getChunkViewDistance(), (chunkX, chunkZ) -> {
-            final CompletableFuture<Chunk> future = instance.loadOptionalChunk(chunkX, chunkZ);
-            if (!future.isDone()) futures.add(future);
-        });
+//        ChunkUtils.forChunksInRange(spawnPosition, MinecraftServer.getChunkViewDistance(), (chunkX, chunkZ) -> {
+//            final CompletableFuture<Chunk> future = instance.loadOptionalChunk(chunkX, chunkZ);
+//            if (!future.isDone()) futures.add(future);
+//        });
         if (futures.isEmpty()) {
-            // All chunks are already loaded
+//             All chunks are already loaded
             runnable.accept(instance);
             return AsyncUtils.VOID_FUTURE;
         }
 
-        // One or more chunks need to be loaded
+//         One or more chunks need to be loaded
         final Thread runThread = Thread.currentThread();
         CountDownLatch latch = new CountDownLatch(1);
         Scheduler scheduler = MinecraftServer.getSchedulerManager();
         CompletableFuture<Void> future = new CompletableFuture<>() {
             @Override
             public Void join() {
-                // Prevent deadlock
+//                 Prevent deadlock
                 if (runThread == Thread.currentThread()) {
                     try {
                         latch.await();
@@ -654,12 +653,13 @@ public class Player extends LivingEntity implements CommandSender, Localizable, 
     public void spawnPlayer(@NotNull Instance instance, @NotNull Pos spawnPosition,
                              boolean firstSpawn, boolean dimensionChange, boolean updateChunks) {
         if (!firstSpawn) {
-            // Player instance changed, clear current viewable collections
-            if (updateChunks)
-                ChunkUtils.forChunksInRange(spawnPosition, MinecraftServer.getChunkViewDistance(), chunkRemover);
+//             Player instance changed, clear current viewable collections
+//            if (updateChunks)
+//                ChunkUtils.forChunksInRange(spawnPosition, MinecraftServer.getChunkViewDistance(), chunkRemover);
         }
 
-        if (dimensionChange) sendDimension(instance.getDimensionType());
+//        if (dimensionChange) sendDimension(instance.getDimensionType());
+        if (dimensionChange) this.dimensionType = instance.getDimensionType();
 
         super.setInstance(instance, spawnPosition);
 
@@ -668,11 +668,11 @@ public class Player extends LivingEntity implements CommandSender, Localizable, 
             final int chunkZ = spawnPosition.chunkZ();
             chunksLoadedByClient = new Vec(chunkX, chunkZ);
             chunkUpdateLimitChecker.addToHistory(getChunk());
-            sendPacket(new UpdateViewPositionPacket(chunkX, chunkZ));
-            ChunkUtils.forChunksInRange(spawnPosition, MinecraftServer.getChunkViewDistance(), chunkAdder);
+//            sendPacket(new UpdateViewPositionPacket(chunkX, chunkZ));
+//            ChunkUtils.forChunksInRange(spawnPosition, MinecraftServer.getChunkViewDistance(), chunkAdder);
         }
 
-        synchronizePosition(true); // So the player doesn't get stuck
+//        synchronizePosition(true); // So the player doesn't get stuck
 
         if (dimensionChange || firstSpawn) {
             this.inventory.update();
