@@ -855,9 +855,6 @@ public class Entity implements Viewable, Tickable, Schedulable, Snapshotable, Ev
         Check.stateCondition(!instance.isRegistered(),
                 "Instances need to be registered, please use InstanceManager#registerInstance or InstanceManager#registerSharedInstance");
         final Instance previousInstance = this.instance;
-        if (Objects.equals(previousInstance, instance)) {
-            return teleport(spawnPosition); // Already in the instance, teleport to spawn point
-        }
         AddEntityToInstanceEvent event = new AddEntityToInstanceEvent(instance, this);
         EventDispatcher.call(event);
         if (event.isCancelled()) return null; // TODO what to return?
@@ -873,7 +870,7 @@ public class Entity implements Viewable, Tickable, Schedulable, Snapshotable, Ev
                 Check.notNull(chunk, "Entity has been placed in an unloaded chunk!");
                 refreshCurrentChunk(chunk);
                 if (this instanceof Player player) {
-                    instance.getWorldBorder().init(player);
+//                    instance.getWorldBorder().init(player);
                     player.sendPacket(instance.createTimePacket());
                 }
                 instance.getEntityTracker().register(this, spawnPosition, trackingTarget, trackingUpdate);
