@@ -36,6 +36,20 @@ public final class ChunkUpdateLimitChecker {
         return result;
     }
 
+    public boolean addToHistory(int chunkX, int chunkZ) {
+        final long index = ChunkUtils.getChunkIndex(chunkX, chunkZ);
+        boolean result = true;
+        final int lastIndex = historySize - 1;
+        for (int i = 0; i < lastIndex; i++) {
+            if (chunkHistory[i] == index) {
+                result = false;
+            }
+            chunkHistory[i] = chunkHistory[i + 1];
+        }
+        chunkHistory[lastIndex] = index;
+        return result;
+    }
+
     public void clearHistory() {
         Arrays.fill(this.chunkHistory, Long.MAX_VALUE);
     }

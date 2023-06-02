@@ -95,10 +95,11 @@ public class Entity implements Viewable, Tickable, Schedulable, Snapshotable, Ev
     private final CachedPacket destroyPacketCache = new CachedPacket(() -> new DestroyEntitiesPacket(getEntityId()));
 
     public Instance instance;
-    protected Chunk currentChunk;
+    public Chunk currentChunk;
     public Pos position;
     public Pos previousPosition;
-    protected Pos lastSyncedPosition;
+    public Pos lastSyncedPosition;
+    public void setLastSyncedPosition(Pos pos) { this.lastSyncedPosition = pos; }
     protected boolean onGround;
 
     private BoundingBox boundingBox;
@@ -167,7 +168,8 @@ public class Entity implements Viewable, Tickable, Schedulable, Snapshotable, Ev
     // Network synchronization, send the absolute position of the entity each X milliseconds
     private static final Duration SYNCHRONIZATION_COOLDOWN = Duration.of(1, TimeUnit.MINUTE);
     private Duration customSynchronizationCooldown;
-    private long lastAbsoluteSynchronizationTime;
+    public long lastAbsoluteSynchronizationTime;
+    public void setLastAbsoluteSynchronizationTime(long newValue) {this.lastAbsoluteSynchronizationTime = newValue;}
 
     protected Metadata metadata = new Metadata(this);
     protected EntityMeta entityMeta;
