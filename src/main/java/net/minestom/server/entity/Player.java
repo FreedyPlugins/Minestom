@@ -30,6 +30,7 @@ import net.minestom.server.entity.fakeplayer.FakePlayer;
 import net.minestom.server.entity.metadata.PlayerMeta;
 import net.minestom.server.entity.vehicle.PlayerVehicleInformation;
 import net.minestom.server.event.EventDispatcher;
+import net.minestom.server.event.entity.EntityDeathEvent;
 import net.minestom.server.event.inventory.InventoryOpenEvent;
 import net.minestom.server.event.item.ItemDropEvent;
 import net.minestom.server.event.item.ItemUpdateStateEvent;
@@ -436,7 +437,13 @@ public class Player extends LivingEntity implements CommandSender, Localizable, 
             if (getInstance() != null)
                 setDeathLocation(getInstance().getDimensionType(), getPosition());
         }
-        super.kill();
+        refreshIsDead(true); // So the entity isn't killed over and over again
+        triggerStatus((byte) 3); // Start death animation status
+        setPose(Pose.DYING);
+        setHealth(0);
+
+        EntityDeathEvent entityDeathEvent = new EntityDeathEvent(this);
+        EventDispatcher.call(entityDeathEvent);
     }
 
     /**
@@ -451,38 +458,38 @@ public class Player extends LivingEntity implements CommandSender, Localizable, 
         setOnFire(false);
         refreshHealth();
 
-        sendPacket(new RespawnPacket(getDimensionType().toString(), getDimensionType().getName().asString(),
-               0, gameMode, gameMode, false, levelFlat, true, deathLocation));
+//        sendPacket(new RespawnPacket(getDimensionType().toString(), getDimensionType().getName().asString(),
+//               0, gameMode, gameMode, false, levelFlat, true, deathLocation));
 
         PlayerRespawnEvent respawnEvent = new PlayerRespawnEvent(this);
         EventDispatcher.call(respawnEvent);
-        triggerStatus((byte) (24 + permissionLevel)); // Set permission level
+//        triggerStatus((byte) (24 + permissionLevel)); // Set permission level
         refreshIsDead(false);
         updatePose();
 
-        Pos respawnPosition = respawnEvent.getRespawnPosition();
-
-        // The client unloads chunks when respawning, so resend all chunks next to spawn
-        ChunkUtils.forChunksInRange(respawnPosition, Math.min(MinecraftServer.getChunkViewDistance(), settings.getViewDistance()), (chunkX, chunkZ) ->
-                this.instance.loadOptionalChunk(chunkX, chunkZ).thenAccept(chunk -> {
-                    try {
-                        if (chunk != null) {
-                            chunk.sendChunk(this);
-                        }
-                    } catch (Exception e) {
-                        MinecraftServer.getExceptionManager().handleException(e);
-                    }
-                }));
-        chunksLoadedByClient = new Vec(respawnPosition.chunkX(), respawnPosition.chunkZ());
+//        Pos respawnPosition = respawnEvent.getRespawnPosition();
+//
+//        // The client unloads chunks when respawning, so resend all chunks next to spawn
+//        ChunkUtils.forChunksInRange(respawnPosition, Math.min(MinecraftServer.getChunkViewDistance(), settings.getViewDistance()), (chunkX, chunkZ) ->
+//                this.instance.loadOptionalChunk(chunkX, chunkZ).thenAccept(chunk -> {
+//                    try {
+//                        if (chunk != null) {
+//                            chunk.sendChunk(this);
+//                        }
+//                    } catch (Exception e) {
+//                        MinecraftServer.getExceptionManager().handleException(e);
+//                    }
+//                }));
+//        chunksLoadedByClient = new Vec(respawnPosition.chunkX(), respawnPosition.chunkZ());
         // Client also needs all entities resent to them, since those are unloaded as well
-        this.instance.getEntityTracker().nearbyEntitiesByChunkRange(respawnPosition, Math.min(MinecraftServer.getChunkViewDistance(), settings.getViewDistance()),
-                EntityTracker.Target.ENTITIES, entity -> {
-                    // Skip refreshing self with a new viewer
-                    if (!entity.getUuid().equals(uuid)) {
-                        entity.updateNewViewer(this);
-                    }
-                });
-        teleport(respawnPosition).thenRun(this::refreshAfterTeleport);
+//        this.instance.getEntityTracker().nearbyEntitiesByChunkRange(respawnPosition, Math.min(MinecraftServer.getChunkViewDistance(), settings.getViewDistance()),
+//                EntityTracker.Target.ENTITIES, entity -> {
+//                    // Skip refreshing self with a new viewer
+//                    if (!entity.getUuid().equals(uuid)) {
+//                        entity.updateNewViewer(this);
+//                    }
+//                });
+//        teleport(respawnPosition).thenRun(this::refreshAfterTeleport);
     }
 
     /**
