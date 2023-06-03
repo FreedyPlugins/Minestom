@@ -401,46 +401,47 @@ public class Player extends LivingEntity implements CommandSender, Localizable, 
             // get death screen text to the killed player
             {
                 if (lastDamageSource != null) {
-                    deathText = lastDamageSource.buildDeathScreenText(this);
+//                    deathText = lastDamageSource.buildDeathScreenText(this);
                 } else { // may happen if killed by the server without applying damage
-                    deathText = Component.text("Killed by poor programming.");
+//                    deathText = Component.text("Killed by poor programming.");
                 }
             }
 
             // get death message to chat
             {
                 if (lastDamageSource != null) {
-                    chatMessage = lastDamageSource.buildDeathMessage(this);
+//                    chatMessage = lastDamageSource.buildDeathMessage(this);
                 } else { // may happen if killed by the server without applying damage
-                    chatMessage = Component.text(getUsername() + " was killed by poor programming.");
+//                    chatMessage = Component.text(getUsername() + " was killed by poor programming.");
                 }
             }
 
             // Call player death event
-            PlayerDeathEvent playerDeathEvent = new PlayerDeathEvent(this, deathText, chatMessage);
+            PlayerDeathEvent playerDeathEvent = new PlayerDeathEvent(this, null, null);
             EventDispatcher.call(playerDeathEvent);
 
-            deathText = playerDeathEvent.getDeathText();
-            chatMessage = playerDeathEvent.getChatMessage();
+//            deathText = playerDeathEvent.getDeathText();
+//            chatMessage = playerDeathEvent.getChatMessage();
 
             // #buildDeathScreenText can return null, check here
-            if (deathText != null) {
-                sendPacket(new DeathCombatEventPacket(getEntityId(), -1, deathText));
-            }
+//            if (deathText != null) {
+//                sendPacket(new DeathCombatEventPacket(getEntityId(), -1, deathText));
+//            }
 
             // #buildDeathMessage can return null, check here
-            if (chatMessage != null) {
-                Audiences.players().sendMessage(chatMessage);
-            }
+//            if (chatMessage != null) {
+//                Audiences.players().sendMessage(chatMessage);
+//            }
 
             // Set death location
-            if (getInstance() != null)
+            if (getInstance() != null) {
                 setDeathLocation(getInstance().getDimensionType(), getPosition());
+            }
         }
         refreshIsDead(true); // So the entity isn't killed over and over again
-        triggerStatus((byte) 3); // Start death animation status
-        setPose(Pose.DYING);
-        setHealth(0);
+//        triggerStatus((byte) 3); // Start death animation status
+//        setPose(Pose.DYING);
+//        setHealth(0);
 
         EntityDeathEvent entityDeathEvent = new EntityDeathEvent(this);
         EventDispatcher.call(entityDeathEvent);
@@ -456,7 +457,7 @@ public class Player extends LivingEntity implements CommandSender, Localizable, 
 
         setFireForDuration(0);
         setOnFire(false);
-        refreshHealth();
+//        refreshHealth();
 
 //        sendPacket(new RespawnPacket(getDimensionType().toString(), getDimensionType().getName().asString(),
 //               0, gameMode, gameMode, false, levelFlat, true, deathLocation));
@@ -465,7 +466,7 @@ public class Player extends LivingEntity implements CommandSender, Localizable, 
         EventDispatcher.call(respawnEvent);
 //        triggerStatus((byte) (24 + permissionLevel)); // Set permission level
         refreshIsDead(false);
-        updatePose();
+//        updatePose();
 
 //        Pos respawnPosition = respawnEvent.getRespawnPosition();
 //
